@@ -10,6 +10,7 @@ int Recursive_rental_system(int hours)
 	if (hours < 1)
 	{
 		return 0;
+
 	}
 	else
 	{
