@@ -76,7 +76,7 @@ int main()
     int General_hourly_wage = 1226;
 
     // 比較したい時間を設定
-    int hours_to_work = 6;
+    int hours_to_work = 30;
 
     // Comparison関数に両方の値を渡す
     Comparison(hours_to_work, General_hourly_wage);
