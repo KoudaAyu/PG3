@@ -47,7 +47,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
             }
         }
 
-        // Pass modified keys to the new scene update so the newly loaded scene won't see the same SPACE press
         if (consumedSpace) {
             char keysForScene[256];
             memcpy(keysForScene, keys, 256);

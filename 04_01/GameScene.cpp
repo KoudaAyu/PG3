@@ -15,7 +15,7 @@ void GameScene::Update(const char* keys, const char* preKeys) {
 	player_.Update();
 	enemy_.Update();
 
-	// collision: check if player's bullet hits enemy
+	
 	Bullet& b = player_.GetBullet();
 	if (b.IsActive() && enemy_.IsAlive()) {
 		Vector2 bp = b.GetPosition();
@@ -25,13 +25,10 @@ void GameScene::Update(const char* keys, const char* preKeys) {
 		float dist2 = dx * dx + dy * dy;
 		float radiusSum = b.GetRadius() + enemy_.GetRadius();
 		if (dist2 <= radiusSum * radiusSum) {
-			// enemy is hit
+		
 			enemy_.SetAlive(false);
 			b.SetActive(false);
-			// request scene change to Clear
-			// Note: SceneManager is not globally accessible here; instead use key transition in main.
-			// To immediately switch, send a custom flag via SceneManager singleton or modify design.
-		}
+				}
 	}
 	
 }

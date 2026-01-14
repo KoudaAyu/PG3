@@ -5,12 +5,11 @@ Enemy::Enemy() {}
 Enemy::~Enemy() {}
 
 void Enemy::Initialize() {
-	// default position already set
+	
 	isAlive_ = true;
 }
 
 void Enemy::Update() {
-	// simple idle behaviour
 }
 
 void Enemy::Draw() {
