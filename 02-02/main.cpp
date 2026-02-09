@@ -19,6 +19,7 @@ int Recursive_rental_system(int hours)
 		
 		//今回の時給
 		int Current_hourly_wage = Hourly_wage_one_hour_ago * 2 - 50;
+		return Current_hourly_wage;
 	}
 }
 
@@ -28,7 +29,7 @@ void Comparison(int hours, int general_hourly_wage)
     int total_general_salary = 0;   // 一般的な時給体系の総賃金
     int total_recursive_salary = 0; // 再帰的な時給体系の総賃金
 
-   printf("| 時間 | 　　一般　　 | 再帰時給 |　　 再帰　　 |\n");
+   printf("| 時間 |   一般   | 再帰時給 |   再帰   |\n");
     printf("|------|--------------|----------|--------------|\n");
 
     // 1時間目から総労働時間までループ
