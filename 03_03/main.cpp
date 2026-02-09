@@ -1,46 +1,62 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <iomanip>
 
-
-class Animal {
+class IShape {
 public:
-    virtual ~Animal() = default;
-    // speak ‚Í“®•¨‚²‚Æ‚ÉˆÙ‚È‚é–Â‚«º‚ğo‚·
-    virtual void speak() const = 0;
+    virtual ~IShape() = default;
+    // é¢ç©ã‚’è¨ˆç®—ã—ã¦è¿”ã™
+    virtual double Size() const = 0;
+    // é¢ç©ã‚’è¡¨ç¤ºã™ã‚‹ï¼ˆDrawï¼‰
+    virtual void Draw() const = 0;
 };
 
-class Dog : public Animal {
+class Circle : public IShape {
 public:
-    void speak() const override {
-        std::cout << "Œ¢: ƒƒ“ƒƒ“I" << std::endl;
+    explicit Circle(double r) : radius_(r) {}
+
+    double Size() const override {
+        static constexpr double PI = 3.14159265358979323846;
+        return PI * radius_ * radius_;
     }
+
+    void Draw() const override {
+        std::cout << "Circle: radius=" << radius_
+                  << " area=" << std::fixed << std::setprecision(2) << Size()
+                  << std::endl;
+    }
+
+private:
+    double radius_;
 };
 
-class Cat : public Animal {
+class Rectangle : public IShape {
 public:
-    void speak() const override {
-        std::cout << "”L: ƒjƒƒ[" << std::endl;
-    }
-};
+    Rectangle(double w, double h) : width_(w), height_(h) {}
 
-class Bird : public Animal {
-public:
-    void speak() const override {
-        std::cout << "’¹: ƒs[ƒs[" << std::endl;
+    double Size() const override {
+        return width_ * height_;
     }
+
+    void Draw() const override {
+        std::cout << "Rectangle: " << width_ << " x " << height_
+                  << " area=" << std::fixed << std::setprecision(2) << Size()
+                  << std::endl;
+    }
+
+private:
+    double width_;
+    double height_;
 };
 
 int main() {
-    // ˆÙ‚È‚é“®•¨ƒCƒ“ƒXƒ^ƒ“ƒX‚ğŠî’êƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^‚Åˆµ‚¤‚±‚Æ‚Å
-    // ƒ‰ƒ“ƒ^ƒCƒ€‚Å“KØ‚ÈU‚é•‘‚¢‚ªŒÄ‚Î‚ê‚é‚±‚Æ‚ğ¦‚·B
-    std::vector<std::unique_ptr<Animal>> zoo;
-    zoo.emplace_back(std::make_unique<Dog>());
-    zoo.emplace_back(std::make_unique<Cat>());
-    zoo.emplace_back(std::make_unique<Bird>());
+    std::vector<std::unique_ptr<IShape>> shapes;
+    shapes.emplace_back(std::make_unique<Circle>(2.5));
+    shapes.emplace_back(std::make_unique<Rectangle>(3.0, 4.0));
 
-    for (const auto &a : zoo) {
-        a->speak(); // “¯‚¶ŒÄ‚Ño‚µ‚Å‚à“®“I‚É‘Î‰‚·‚éU‚é•‘‚¢‚ªÀs‚³‚ê‚é
+    for (const auto &s : shapes) {
+        s->Draw();
     }
 
     return 0;
