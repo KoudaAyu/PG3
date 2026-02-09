@@ -1,35 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <windows.h> // SleepŠÖ”‚ğg—p‚·‚é‚½‚ß‚É•K—v (WindowsŠÂ‹«‚ğ‘z’è)
+#include <windows.h> // Sleepé–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã«å¿…è¦ (Windowsç’°å¢ƒã‚’æƒ³å®š)
 
-// o–Ú‚Æƒ†[ƒU[‚Ì“ü—Í‚ğ”äŠr‚µAŒ‹‰Ê‚ğ•\¦‚·‚é
+// å‡ºç›®ã¨ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®å…¥åŠ›ã‚’æ¯”è¼ƒã—ã€çµæœã‚’è¡¨ç¤ºã™ã‚‹
 void ShowResult(int roll, int userGuess)
 {
-    // ƒTƒCƒRƒ‚Ìo–Ú‚ğŠï”(1)‚©‹ô”(0)‚É”»’è
-    // Šï”‚È‚ç roll % 2 == 1, ‹ô”‚È‚ç roll % 2 == 0
+    // ã‚µã‚¤ã‚³ãƒ­ã®å‡ºç›®ã‚’å¥‡æ•°(1)ã‹å¶æ•°(0)ã«åˆ¤å®š
+    // å¥‡æ•°ãªã‚‰ roll % 2 == 1, å¶æ•°ãªã‚‰ roll % 2 == 0
     int rollParity = roll % 2;
 
-    printf("o–Ú‚Í %d ‚Å‚µ‚½B\n", roll);
+    printf("å‡ºç›®ã¯ %d ã§ã—ãŸã€‚\n", roll);
 
-    // ƒ†[ƒU[‚Ì—\‘z‚Æo–Ú‚ÌŠï‹ô‚ğ”äŠr
+    // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®äºˆæƒ³ã¨å‡ºç›®ã®å¥‡å¶ã‚’æ¯”è¼ƒ
     if (rollParity == userGuess)
     {
-        printf("u³‰ğv\n");
+        printf("ã€Œæ­£è§£ã€\n");
     }
     else
     {
-        printf("u•s³‰ğv\n");
+        printf("ã€Œä¸æ­£è§£ã€\n");
     }
 }
 
 
 void DelayReveal(void (*fn)(int, int), int roll, int userGuess, unsigned int delayMs)
 {
-    // DelayRevealŠÖ”“à‚ÅSleep(delayMs)‚ğÀs
+    // DelayRevealé–¢æ•°å†…ã§Sleep(delayMs)ã‚’å®Ÿè¡Œ
     Sleep(delayMs);
 
-    // fn(roll, userGuess)‚ğŒÄ‚Ño‚·
+    // fn(roll, userGuess)ã‚’å‘¼ã³å‡ºã™
     (*fn)(roll, userGuess);
 }
 
@@ -42,25 +42,25 @@ int main()
  
     srand((unsigned)time(NULL));
 
-    printf("ƒTƒCƒRƒ‚Ìo–Úi1`6j‚ğ—\‘z‚µ‚Ä‚­‚¾‚³‚¢B\n");
-    printf("—\‘z: Šï”(1) ‚Ü‚½‚Í ‹ô”(0) ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ > ");
+    printf("ã‚µã‚¤ã‚³ãƒ­ã®å‡ºç›®ï¼ˆ1ï½6ï¼‰ã‚’äºˆæƒ³ã—ã¦ãã ã•ã„ã€‚\n");
+    printf("äºˆæƒ³: å¥‡æ•°(1) ã¾ãŸã¯ å¶æ•°(0) ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ > ");
 
 
     if (scanf_s("%d", &userGuess) != 1)
     {
-        printf("“ü—ÍƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n");
+        printf("å…¥åŠ›ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n");
         return 1;
     }
 
     if (userGuess != 0 && userGuess != 1)
     {
-        printf("–³Œø‚È“ü—Í‚Å‚·B1iŠï”j‚Ü‚½‚Í 0i‹ô”j‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n");
+        printf("ç„¡åŠ¹ãªå…¥åŠ›ã§ã™ã€‚1ï¼ˆå¥‡æ•°ï¼‰ã¾ãŸã¯ 0ï¼ˆå¶æ•°ï¼‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚\n");
         return 1;
     }
 
     roll = (rand() % 6) + 1;
 
-    printf("\nŒ‹‰Ê”­•\‚Ü‚Å3•b‘Ò‹@‚µ‚Ü‚·...\n");
+    printf("\nçµæœç™ºè¡¨ã¾ã§3ç§’å¾…æ©Ÿã—ã¾ã™...\n");
 
   
     DelayReveal(ShowResult, roll, userGuess, 3000);

@@ -1,82 +1,82 @@
 #pragma once
 #include <iostream>
 
-// “G‚Ìó‘Ô‘JˆÚiÚ‹ß -> ËŒ‚ -> —£’Ej‚ğƒƒ“ƒoŠÖ”ƒ|ƒCƒ“ƒ^‚ÅÀ‘•
+// æ•µã®çŠ¶æ…‹é·ç§»ï¼ˆæ¥è¿‘ -> å°„æ’ƒ -> é›¢è„±ï¼‰ã‚’ãƒ¡ãƒ³ãƒé–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã§å®Ÿè£…
 class Enemy
 {
 public:
     using StateFunc = void (Enemy::*)();
 
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^: ‰Šúó‘Ô‚ÍuÚ‹ßv
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿: åˆæœŸçŠ¶æ…‹ã¯ã€Œæ¥è¿‘ã€
     Enemy()
         : state_(&Enemy::Approach), distance_(12), shotsRemaining_(0)
     {
-        std::cout << "“G‚ğì¬‚µ‚Ü‚µ‚½B‰Šúó‘Ô: Ú‹ß\n";
+        std::cout << "æ•µã‚’ä½œæˆã—ã¾ã—ãŸã€‚åˆæœŸçŠ¶æ…‹: æ¥è¿‘\n";
     }
 
-    // Update ‚Í‚Ü‚¾s“®‚ªc‚Á‚Ä‚¢‚éŠÔ true ‚ğ•Ô‚·
+    // Update ã¯ã¾ã è¡Œå‹•ãŒæ®‹ã£ã¦ã„ã‚‹é–“ true ã‚’è¿”ã™
     bool Update()
     {
         if (state_)
         {
-            // Œ»İ‚Ìó‘ÔŠÖ”‚ğŒÄ‚Ño‚·
+            // ç¾åœ¨ã®çŠ¶æ…‹é–¢æ•°ã‚’å‘¼ã³å‡ºã™
             (this->*state_)();
             return true;
         }
         else
         {
-            std::cout << "‘S‚Ä‚Ì“®ì‚ªŠ®—¹‚µ‚Ü‚µ‚½B\n";
+            std::cout << "å…¨ã¦ã®å‹•ä½œãŒå®Œäº†ã—ã¾ã—ãŸã€‚\n";
             return false;
         }
     }
 
 private:
-    StateFunc state_;      // Œ»İ‚Ìó‘Ô‚ğw‚·ƒƒ“ƒoŠÖ”ƒ|ƒCƒ“ƒ^
-    int distance_;         // ƒvƒŒƒCƒ„[‚Æ‚ÌŠÈˆÕ‹——£
-    int shotsRemaining_;   // ËŒ‚ó‘Ô‚Å‚Ìc‚èËŒ‚‰ñ”
+    StateFunc state_;      // ç¾åœ¨ã®çŠ¶æ…‹ã‚’æŒ‡ã™ãƒ¡ãƒ³ãƒé–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+    int distance_;         // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã®ç°¡æ˜“è·é›¢
+    int shotsRemaining_;   // å°„æ’ƒçŠ¶æ…‹ã§ã®æ®‹ã‚Šå°„æ’ƒå›æ•°
 
-    // ó‘Ô‚ğ•ÏX‚·‚é‚Æ‚«‚ÉŒÄ‚Ôƒwƒ‹ƒp[ió‘Ô–¼‚ğ•\¦)
+    // çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹ã¨ãã«å‘¼ã¶ãƒ˜ãƒ«ãƒ‘ãƒ¼ï¼ˆçŠ¶æ…‹åã‚’è¡¨ç¤º)
     void SetState(StateFunc s, const char* name)
     {
         state_ = s;
-        std::cout << "ó‘Ô‘JˆÚ: " << name << "\n";
+        std::cout << "çŠ¶æ…‹é·ç§»: " << name << "\n";
     }
 
-    // Ú‹ß: ‹——£‚ğk‚ßA\•ª‚É‹ß‚Ã‚¢‚½‚çËŒ‚ó‘Ô‚Ö
+    // æ¥è¿‘: è·é›¢ã‚’ç¸®ã‚ã€ååˆ†ã«è¿‘ã¥ã„ãŸã‚‰å°„æ’ƒçŠ¶æ…‹ã¸
     void Approach()
     {
-        std::cout << "Ú‹ß’†... ‹——£ = " << distance_ << "\n";
-        distance_ -= 3; // Ú‹ß‚·‚é
+        std::cout << "æ¥è¿‘ä¸­... è·é›¢ = " << distance_ << "\n";
+        distance_ -= 3; // æ¥è¿‘ã™ã‚‹
         if (distance_ <= 3)
         {
-            shotsRemaining_ = 3; // ËŒ‚‚ğ3‰ñs‚¤
-            SetState(&Enemy::Shoot, "ËŒ‚");
+            shotsRemaining_ = 3; // å°„æ’ƒã‚’3å›è¡Œã†
+            SetState(&Enemy::Shoot, "å°„æ’ƒ");
         }
     }
 
-    // ËŒ‚: c’e‚ª‚ ‚éŠÔËŒ‚‚ğs‚¢A–³‚­‚È‚Á‚½‚ç—£’E‚Ö
+    // å°„æ’ƒ: æ®‹å¼¾ãŒã‚ã‚‹é–“å°„æ’ƒã‚’è¡Œã„ã€ç„¡ããªã£ãŸã‚‰é›¢è„±ã¸
     void Shoot()
     {
         if (shotsRemaining_ > 0)
         {
-            std::cout << "ËŒ‚I c‚è = " << shotsRemaining_ << "\n";
+            std::cout << "å°„æ’ƒï¼ æ®‹ã‚Š = " << shotsRemaining_ << "\n";
             --shotsRemaining_;
         }
         if (shotsRemaining_ <= 0)
         {
-            SetState(&Enemy::Retreat, "—£’E");
+            SetState(&Enemy::Retreat, "é›¢è„±");
         }
     }
 
-    // —£’E: ‹——£‚ğ—£‚µAˆÀ‘S‹——£‚É’B‚µ‚½‚çI—¹
+    // é›¢è„±: è·é›¢ã‚’é›¢ã—ã€å®‰å…¨è·é›¢ã«é”ã—ãŸã‚‰çµ‚äº†
     void Retreat()
     {
-        std::cout << "—£’E’†... ‹——£ = " << distance_ << "\n";
-        distance_ += 4; // —£’E‚·‚é
+        std::cout << "é›¢è„±ä¸­... è·é›¢ = " << distance_ << "\n";
+        distance_ += 4; // é›¢è„±ã™ã‚‹
         if (distance_ >= 20)
         {
-            std::cout << "ˆÀ‘S‹——£‚Ü‚Å—£’E‚µ‚Ü‚µ‚½B\n";
-            state_ = nullptr; // ‘S“®ìI—¹
+            std::cout << "å®‰å…¨è·é›¢ã¾ã§é›¢è„±ã—ã¾ã—ãŸã€‚\n";
+            state_ = nullptr; // å…¨å‹•ä½œçµ‚äº†
         }
     }
 };

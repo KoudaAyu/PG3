@@ -19,38 +19,38 @@ int main()
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    std::cout << "ƒTƒCƒRƒ‚Ìo–Úi1`6j‚ğ—\‘z‚µ‚Ä‚­‚¾‚³‚¢B\n";
-    std::cout << "—\‘z: Šï”(1) ‚Ü‚½‚Í ‹ô”(0) ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ > ";
+    std::cout << "ã‚µã‚¤ã‚³ãƒ­ã®å‡ºç›®ï¼ˆ1ï½6ï¼‰ã‚’äºˆæƒ³ã—ã¦ãã ã•ã„ã€‚\n";
+    std::cout << "äºˆæƒ³: å¥‡æ•°(1) ã¾ãŸã¯ å¶æ•°(0) ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ > ";
 
     if (!(std::cin >> userGuess))
     {
-        std::cerr << "“ü—ÍƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n";
+        std::cerr << "å…¥åŠ›ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n";
         return 1;
     }
 
     if (userGuess != 0 && userGuess != 1)
     {
-        std::cerr << "–³Œø‚È“ü—Í‚Å‚·B1iŠï”j‚Ü‚½‚Í 0i‹ô”j‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n";
+        std::cerr << "ç„¡åŠ¹ãªå…¥åŠ›ã§ã™ã€‚1ï¼ˆå¥‡æ•°ï¼‰ã¾ãŸã¯ 0ï¼ˆå¶æ•°ï¼‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚\n";
         return 1;
     }
 
     roll = (std::rand() % 6) + 1;
 
-    std::cout << "\nŒ‹‰Ê”­•\‚Ü‚Å3•b‘Ò‹@‚µ‚Ü‚·...\n";
+    std::cout << "\nçµæœç™ºè¡¨ã¾ã§3ç§’å¾…æ©Ÿã—ã¾ã™...\n";
 
     auto showResultLambda = [](int r, int g)
         {
             int rollParity = r % 2;
 
-            std::cout << "o–Ú‚Í " << r << " ‚Å‚µ‚½B\n";
+            std::cout << "å‡ºç›®ã¯ " << r << " ã§ã—ãŸã€‚\n";
 
             if (rollParity == g)
             {
-                std::cout << "u³‰ğv\n";
+                std::cout << "ã€Œæ­£è§£ã€\n";
             }
             else
             {
-                std::cout << "u•s³‰ğv\n";
+                std::cout << "ã€Œä¸æ­£è§£ã€\n";
             }
         };
 

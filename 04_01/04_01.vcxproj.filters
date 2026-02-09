@@ -132,4 +132,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="MathUtl.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\01_01\.editorconfig" />
+  </ItemGroup>
 </Project>

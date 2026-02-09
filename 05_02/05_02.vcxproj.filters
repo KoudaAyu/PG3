@@ -142,4 +142,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Enemy.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\01_01\.editorconfig" />
+  </ItemGroup>
 </Project>

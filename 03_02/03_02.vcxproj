@@ -128,6 +128,9 @@
   <ItemGroup>
     <ClInclude Include="comparison.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\01_01\.editorconfig" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

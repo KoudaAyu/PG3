@@ -15,14 +15,14 @@ int main()
     MinClass<float> mf(4.2f, 1.9f);
     std::cout << "Min<float>: " << mf.Min() << "\n";
 
-    // ˆÙ‚È‚éŒ^“¯m‚Ì”äŠr
+    // ç•°ãªã‚‹å‹åŒå£«ã®æ¯”è¼ƒ
     MinClassMixed<int, float> mix1(5, 3.7f);
     std::cout << "Min<int, float>: " << mix1.Min() << "\n";
 
     MinClassMixed<double, int> mix2(1.2, 2);
     std::cout << "Min<double, int>: " << mix2.Min() << "\n";
 
-    // float ‚Æ double ‚Ì¬İ”äŠr
+    // float ã¨ double ã®æ··åœ¨æ¯”è¼ƒ
     MinClassMixed<float, double> mix3(2.2f, 2.5);
     std::cout << "Min<float, double>: " << mix3.Min() << "\n";
 

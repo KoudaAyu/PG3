@@ -121,4 +121,7 @@
     <ClInclude Include="InputHandle.h" />
     <ClInclude Include="GameScene.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\01_01\.editorconfig" />
+  </ItemGroup>
 </Project>

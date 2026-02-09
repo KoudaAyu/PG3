@@ -24,4 +24,7 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\01_01\.editorconfig" />
+  </ItemGroup>
 </Project>
