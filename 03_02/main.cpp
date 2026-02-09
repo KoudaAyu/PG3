@@ -3,6 +3,7 @@
 #include <iomanip>
 #include "comparison.h"
 
+
 int main()
 {
     MinClass<int> mi(7, 3);
@@ -15,14 +16,14 @@ int main()
     MinClass<float> mf(4.2f, 1.9f);
     std::cout << "Min<float>: " << mf.Min() << "\n";
 
-    // 異なる型同士の比較
+  
     MinClassMixed<int, float> mix1(5, 3.7f);
     std::cout << "Min<int, float>: " << mix1.Min() << "\n";
 
     MinClassMixed<double, int> mix2(1.2, 2);
     std::cout << "Min<double, int>: " << mix2.Min() << "\n";
 
-    // float と double の混在比較
+  
     MinClassMixed<float, double> mix3(2.2f, 2.5);
     std::cout << "Min<float, double>: " << mix3.Min() << "\n";
 
