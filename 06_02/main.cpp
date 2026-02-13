@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <future>
+#include <chrono>
+
 
 
 void readMapChip(const std::string &path, std::vector<std::vector<int>> &out)
@@ -59,10 +62,17 @@ int main()
     std::vector<std::vector<int>> map;
 
   
-    std::thread reader(readMapChip, std::cref(path), std::ref(map));
+  
+    auto fut = std::async(std::launch::async, readMapChip, std::cref(path), std::ref(map));
 
-   
-    reader.join();
+  
+    {
+        std::cout << "Main thread working..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    }
+
+ 
+    fut.get();
 
     if (map.empty())
     {

@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<thread>
+#include<mutex>
+#include<condition_variable>
 
 void Double(int num)
 {
@@ -23,9 +25,36 @@ int main()
 {
 	int num = 3;
 
-	std::thread th1(Double, num);
-	std::thread th2(AddTwo, num);
-	std::thread th3(Increment, num);
+	std::mutex mtx;
+	std::condition_variable cv;
+	int turn = 1; // 1 -> Double, 2 -> AddTwo, 3 -> Increment
+
+	std::thread th1([&]() {
+		std::unique_lock<std::mutex> lk(mtx);
+		cv.wait(lk, [&]() { return turn == 1; });
+		Double(num);
+		turn = 2;
+		lk.unlock();
+		cv.notify_all();
+	});
+
+	std::thread th2([&]() {
+		std::unique_lock<std::mutex> lk(mtx);
+		cv.wait(lk, [&]() { return turn == 2; });
+		AddTwo(num);
+		turn = 3;
+		lk.unlock();
+		cv.notify_all();
+	});
+
+	std::thread th3([&]() {
+		std::unique_lock<std::mutex> lk(mtx);
+		cv.wait(lk, [&]() { return turn == 3; });
+		Increment(num);
+		turn = 4;
+		lk.unlock();
+		cv.notify_all();
+	});
 
 	th1.join();
 	th2.join();
