@@ -21,5 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
+    <None Include="answer02-02.md" />
   </ItemGroup>
 </Project>
